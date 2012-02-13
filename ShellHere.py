@@ -14,8 +14,11 @@ class ShellHereCommand(sublime_plugin.TextCommand):
         return True 
 
     def run(self, edit):
+        settings = sublime.load_settings(__name__ + '.sublime-settings')
+        print settings.get("shell")
         d = os.path.dirname(self.view.file_name())
         pwd = os.getcwd()
         os.chdir(d)
-        subprocess.call([r"C:\\cygwin\\bin\\mintty.exe","-i","/Cygwin-Terminal.ico","-"])
+        os.environ["SHELLHERE_PATH"]=d
+        subprocess.Popen(settings.get("shell"))
         os.chdir(pwd)
