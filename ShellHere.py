@@ -19,6 +19,7 @@ class ShellHereCommand(sublime_plugin.TextCommand):
         d = os.path.dirname(self.view.file_name())
         pwd = os.getcwd()
         os.chdir(d)
+        # Hack: pass in environment variable so Cygwin can change to it in .profile
         os.environ["SHELLHERE_PATH"]=d
         subprocess.Popen(settings.get("shell"))
         os.chdir(pwd)
