@@ -1,0 +1,4 @@
+[
+  { "keys": ["ctrl+alt+shift+t"],     
+    "command":"shell_here"}
+]
